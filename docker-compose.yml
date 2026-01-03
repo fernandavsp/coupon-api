@@ -1,0 +1,6 @@
+version: "3.8"
+services:
+  coupon-api:
+    build: src/main/java/com/devcore/coupon_api
+    ports:
+      - "8080:8080"
