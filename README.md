@@ -6,7 +6,7 @@
 ![Build](https://img.shields.io/github/actions/workflow/status/fernandavsp/coupon-api/maven.yml?branch=main)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
-API REST para gerenciamento de cupons, desenvolvida em **Spring Boot 3** com **Java 17**, utilizando **H2** como banco em memória. A aplicação implementa regras de negócio de criação e deleção de cupons, incluindo **soft delete**, validação de código, valor mínimo de desconto e data de expiração.
+API REST para gerenciamento de cupons, desenvolvida em **Spring Boot 3** com **Java 17**, utilizando **H2** como banco em memória. A aplicação implementa regras de negócio de criação e deleção de cupons, incluindo validação de código, valor mínimo de desconto e data de expiração.
 
 ---
 
@@ -19,7 +19,6 @@ API REST para gerenciamento de cupons, desenvolvida em **Spring Boot 3** com **J
     - Data de expiração futura
     - Publicado ou não
 - Deletar cupons (**soft delete**)
-- Consultar cupons
 - Documentação **Swagger / OpenAPI**
 - Testes unitários e de integração com H2
 
@@ -31,7 +30,7 @@ API REST para gerenciamento de cupons, desenvolvida em **Spring Boot 3** com **J
 - Spring Boot 3.x
 - Spring Web MVC
 - Spring Data JPA
-- H2 Database (em memória)
+- H2 Database
 - Springdoc OpenAPI 2.6.6 (Swagger UI)
 - Maven
 - JUnit + Mockito
@@ -61,7 +60,6 @@ Porta exposta: 8080
 
 Swagger UI: http://localhost:8080/swagger-ui/index.html
 
-
 ## Testes
 
 Unitários: JUnit + Mockito
@@ -83,6 +81,7 @@ Integração: MockMvc + H2 Database
 
 ### Exemplo de request JSON
 
+```json
 {
   "code": "ABC-12@3",
   "description": "Teste cupom",
@@ -90,6 +89,7 @@ Integração: MockMvc + H2 Database
   "expirationDate": "2030-12-31",
   "published": true
 }
+```
 
 ### Deletar cupom
 #### DELETE /coupons/{id}
@@ -101,6 +101,7 @@ Retorna 409 Conflict se já estiver deletado.
 
 ### Exemplo de resposta ao tentar deletar um cupom já deletado:
 
+```json
 {
 "timestamp": "2026-01-03T12:00:00",
 "status": 409,
@@ -108,6 +109,7 @@ Retorna 409 Conflict se já estiver deletado.
 "message": "Coupon already deleted",
 "path": "/coupons/1"
 }
+```
 
 ## Swagger
 Documentação interativa:
